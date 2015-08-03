@@ -1,0 +1,10 @@
+business\Business.class
+dao\HotelsDAO.class
+dao\model\PlaceToVisitDTO.class
+dao\model\CustomerDTO.class
+dao\model\PlaceCloseToHotelDTO.class
+controller\HotelsController.class
+dao\model\BookingDTO.class
+dao\impl\HotelsDAOImpl.class
+dao\model\HotelDTO.class
+dao\model\RoomDTO.class
