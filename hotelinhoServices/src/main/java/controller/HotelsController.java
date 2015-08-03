@@ -10,7 +10,7 @@ public class HotelsController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String getAllHotels(){
-		System.out.println("in getAllHotels");
+		System.out.println("This print is from getAllHotels");
 		return " ";
 	}
 	
