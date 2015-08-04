@@ -9,6 +9,7 @@ import business.Business;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
+import model.CustomerBO;
 import model.HotelBO;
 import utils.Translator;
 
@@ -36,6 +37,10 @@ public class BusinessImpl implements Business {
 		
 		return new LinkedList<HotelDTO>();
 		
+	}
+	
+	public void addNewCustomer(CustomerBO customerBO){
+		hotelinhoManager.addNewCustomer(translator.translateCustomerBOtoCustomerDTO(customerBO));
 	}
 
 }

@@ -3,9 +3,12 @@ C:\Users\balea\Desktop\hotelinhoServices\src\main\java\utils\RoomMapper.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\manager\impl\HotelinhoManagerImpl.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\model\HotelBO.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\impl\HotelsDAOImpl.java
+C:\Users\balea\Desktop\hotelinhoServices\src\main\java\utils\CustomerMapper.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\business\Business.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\business\impl\BusinessImpl.java
+C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\CustomersDAO.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\HotelsDAO.java
+C:\Users\balea\Desktop\hotelinhoServices\src\main\java\controller\CustomersController.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\manager\HotelinhoManager.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\model\PlaceToVisitDTO.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\model\PlaceCloseToHotelDTO.java
@@ -14,6 +17,8 @@ C:\Users\balea\Desktop\hotelinhoServices\src\main\java\controller\RoomsControlle
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\controller\HotelsController.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\model\HotelDTO.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\model\CustomerDTO.java
+C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\impl\CustomerDAOImpl.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\model\RoomDTO.java
+C:\Users\balea\Desktop\hotelinhoServices\src\main\java\model\CustomerBO.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\utils\Translator.java
 C:\Users\balea\Desktop\hotelinhoServices\src\main\java\dao\RoomsDAO.java
