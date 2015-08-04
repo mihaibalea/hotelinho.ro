@@ -19,11 +19,11 @@
 
 	
 	
-	<bean id="hotelinhoManagerImpl" class="manager.impl.HotelinhoManagerImpl">
-	<constructor-arg ref="hotelsDAO"></constructor-arg>
-	</bean>
+	<bean id="hotelinhoManagerImpl" class="manager.impl.HotelinhoManagerImpl"></bean>
 
-
+	<bean id="businessImpl" class="business.impl.BusinessImpl"></bean>
+	
+	<bean id="hotelsController" class="controller.HotelsController"></bean>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
