@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dao.HotelsDAO;
 import dao.model.HotelDTO;
+import dao.model.RoomDTO;
 import manager.HotelinhoManager;
 
 public class HotelinhoManagerImpl implements HotelinhoManager {
@@ -21,6 +22,11 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	@Transactional
 	public HotelDTO getHotelById(String id) {
 		return hotelsDAO.getHotelById(id);
+	}
+	
+	@Transactional
+	public List<RoomDTO> getRoomsForHotel(String id){
+		return hotelsDAO.getRoomsForHotel(id);
 	}
 
 }
