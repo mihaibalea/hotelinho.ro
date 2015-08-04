@@ -1,12 +1,14 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.Business;
@@ -33,5 +35,12 @@ public class HotelsController {
 	@RequestMapping(value = "/{id}/rooms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<RoomDTO> getRoomsForHotel(@PathVariable String id) {
 		return business.getRoomsForHotel(id);
+	}
+
+	@RequestMapping(value = "/filtered", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
+		System.out.println(parameters.toString());
+		return business.filterHotelsByFacilities();
+
 	}
 }

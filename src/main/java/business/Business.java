@@ -10,5 +10,6 @@ public interface Business {
 	public List<HotelDTO> getAllCourses();
 	public HotelBO getHotelById(String id);
 	public List<RoomDTO> getRoomsForHotel(String id);
+	public List<HotelDTO> filterHotelsByFacilities();
 
 }
