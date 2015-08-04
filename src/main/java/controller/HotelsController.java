@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import business.Business;
 import dao.model.HotelDTO;
+import dao.model.PlaceCloseToHotelDTO;
 import dao.model.RoomDTO;
 import model.HotelBO;
 
@@ -41,5 +42,11 @@ public class HotelsController {
 	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
 		System.out.println(parameters.toString());
 		return business.filterHotelsByFacilities();
+	}
+	
+	@RequestMapping(value="/{id}/places", method=RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<PlaceCloseToHotelDTO> getPlacesCloseToHotel(@PathVariable String id){
+		//return business.getPlacesCloseToHotel(id);
+		return null;
 	}
 }
