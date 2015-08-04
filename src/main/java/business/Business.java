@@ -1,5 +1,10 @@
 package business;
 
-public class Business {
+import java.util.List;
+
+import dao.model.HotelDTO;
+
+public interface Business {
+	public List<HotelDTO> getAllCourses();
 
 }
