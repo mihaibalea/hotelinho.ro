@@ -4,10 +4,11 @@ import java.util.List;
 
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
+import model.HotelBO;
 
 public interface Business {
 	public List<HotelDTO> getAllCourses();
-	public HotelDTO getHotelById(String id);
+	public HotelBO getHotelById(String id);
 	public List<RoomDTO> getRoomsForHotel(String id);
 
 }

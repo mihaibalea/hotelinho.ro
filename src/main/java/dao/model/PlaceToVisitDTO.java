@@ -31,7 +31,7 @@ public class PlaceToVisitDTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public boolean isCarAcces() {
+	public boolean hasCarAcces() {
 		return carAcces;
 	}
 	public void setCarAcces(boolean carAcces) {
