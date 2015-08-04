@@ -8,6 +8,7 @@ business\Business.class
 dao\HotelsDAO.class
 dao\RoomsDAO.class
 business\impl\BusinessImpl.class
+utils\HotelMapper.class
 dao\model\CustomerDTO.class
 controller\HotelsController.class
 dao\model\BookingDTO.class
