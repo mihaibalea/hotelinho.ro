@@ -1,10 +1,14 @@
+controller\RoomsController.class
+manager\impl\HotelinhoManagerImpl.class
+dao\model\PlaceToVisitDTO.class
+dao\model\PlaceCloseToHotelDTO.class
+manager\HotelinhoManager.class
+dao\impl\HotelsDAOImpl.class
 business\Business.class
 dao\HotelsDAO.class
-dao\model\PlaceToVisitDTO.class
+dao\RoomsDAO.class
 dao\model\CustomerDTO.class
-dao\model\PlaceCloseToHotelDTO.class
 controller\HotelsController.class
 dao\model\BookingDTO.class
-dao\impl\HotelsDAOImpl.class
 dao\model\HotelDTO.class
 dao\model\RoomDTO.class

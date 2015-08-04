@@ -18,6 +18,10 @@
 	<import resource="classpath:connection.xml" />
 
 	
+	
+	<bean id="hotelinhoManagerImpl" class="manager.impl.HotelinhoManagerImpl">
+	<constructor-arg ref="hotelsDAO"></constructor-arg>
+	</bean>
 
 
 
