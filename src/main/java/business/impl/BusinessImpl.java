@@ -1,5 +1,6 @@
 package business.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class BusinessImpl implements Business {
 
 	public List<RoomDTO> getRoomsForHotel(String id) {
 		return hotelinhoManager.getRoomsForHotel(id);
+	}
+
+	public List<HotelDTO> filterHotelsByFacilities() {
+		
+		return new LinkedList<HotelDTO>();
+		
 	}
 
 }
