@@ -45,7 +45,7 @@ public class HotelBO {
 		this.availableRooms = availableRooms;
 	}
 
-	public boolean hasPool() {
+	public boolean isPool() {
 		return pool;
 	}
 
@@ -53,7 +53,7 @@ public class HotelBO {
 		this.pool = pool;
 	}
 
-	public boolean hasRestaurant() {
+	public boolean isRestaurant() {
 		return restaurant;
 	}
 
@@ -61,7 +61,7 @@ public class HotelBO {
 		this.restaurant = restaurant;
 	}
 
-	public boolean hasPlayground() {
+	public boolean isPlayground() {
 		return playground;
 	}
 
@@ -69,7 +69,7 @@ public class HotelBO {
 		this.playground = playground;
 	}
 
-	public boolean hasParking() {
+	public boolean isParking() {
 		return parking;
 	}
 
@@ -77,7 +77,7 @@ public class HotelBO {
 		this.parking = parking;
 	}
 
-	public boolean hasWireless() {
+	public boolean isWireless() {
 		return wireless;
 	}
 
@@ -85,7 +85,7 @@ public class HotelBO {
 		this.wireless = wireless;
 	}
 
-	public boolean hasRoomService() {
+	public boolean isRoomService() {
 		return roomService;
 	}
 
@@ -93,7 +93,7 @@ public class HotelBO {
 		this.roomService = roomService;
 	}
 
-	public boolean hasAirConditioning() {
+	public boolean isAirConditioning() {
 		return airConditioning;
 	}
 

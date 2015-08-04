@@ -12,14 +12,13 @@ public class Translator {
 		hotelBO.setAddress(hotelDTO.getAddress());
 		hotelBO.setNrStars(hotelDTO.getNrStars());
 		hotelBO.setAvailableRooms(hotelDTO.getAvailableRooms());
-		hotelBO.setPool(hotelDTO.hasAirConditioning());
-		hotelBO.setRestaurant(hotelDTO.hasRestaurant());
-		hotelBO.setPlayground(hotelDTO.hasPlayground());
-		hotelBO.setParking(hotelDTO.hasParking());
-		hotelBO.setWireless(hotelDTO.hasWireless());
-		hotelBO.setRoomService(hotelDTO.hasRoomService());
-		hotelBO.setAirConditioning(hotelDTO.hasAirConditioning());
-		
+		hotelBO.setPool(hotelDTO.isPool());
+		hotelBO.setRestaurant(hotelDTO.isRestaurant());
+		hotelBO.setPlayground(hotelDTO.isPlayground());
+		hotelBO.setParking(hotelDTO.isParking());
+		hotelBO.setWireless(hotelDTO.isWireless());
+		hotelBO.setRoomService(hotelDTO.isRoomService());
+		hotelBO.setAirConditioning(hotelDTO.isAirConditioning());
 		return hotelBO;
 	}
 }

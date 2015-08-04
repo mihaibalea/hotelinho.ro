@@ -24,6 +24,8 @@
 	<bean id="businessImpl" class="business.impl.BusinessImpl"></bean>
 	
 	<bean id="hotelsController" class="controller.HotelsController"></bean>
+	
+	<bean id="translator" class="utils.Translator"></bean>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
