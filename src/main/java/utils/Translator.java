@@ -3,7 +3,9 @@ package utils;
 import java.util.LinkedList;
 import java.util.List;
 
+import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
+import model.CustomerBO;
 import model.HotelBO;
 
 public class Translator {
@@ -60,4 +62,33 @@ public class Translator {
 		}
 		return listDTO;
 	}
+
+	public CustomerBO translateCustomerDTOtoCustomerBO(CustomerDTO customerDTO) {
+		CustomerBO customerBo = new CustomerBO();
+
+		customerBo.setName(customerDTO.getName());
+		customerBo.setCnp(customerDTO.getCnp());
+		customerBo.setAddress(customerDTO.getAddress());
+		customerBo.setNationality(customerDTO.getNationality());
+		customerBo.setPhone(customerDTO.getPhone());
+		customerBo.setUsername(customerDTO.getUsername());
+		customerBo.setPassword(customerDTO.getPassword());
+		customerBo.setRegistrationDate(customerDTO.getRegistrationDate());
+		return customerBo;
+	}
+	
+	public CustomerDTO translateCustomerBOtoCustomerDTO(CustomerBO customerBO) {
+		CustomerDTO customerDTO = new CustomerDTO();
+
+		customerDTO.setName(customerBO.getName());
+		customerDTO.setCnp(customerBO.getCnp());
+		customerDTO.setAddress(customerBO.getAddress());
+		customerDTO.setNationality(customerBO.getNationality());
+		customerDTO.setPhone(customerBO.getPhone());
+		customerDTO.setUsername(customerBO.getUsername());
+		customerDTO.setPassword(customerBO.getPassword());
+		customerDTO.setRegistrationDate(customerBO.getRegistrationDate());
+		return customerDTO;
+	}
+
 }
