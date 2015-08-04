@@ -53,7 +53,7 @@ public class RoomDTO {
 		this.nrBeds = nrBeds;
 	}
 
-	public boolean isFridge() {
+	public boolean hasFridge() {
 		return fridge;
 	}
 
@@ -61,7 +61,7 @@ public class RoomDTO {
 		this.fridge = fridge;
 	}
 
-	public boolean isTv() {
+	public boolean hasTv() {
 		return tv;
 	}
 
@@ -69,7 +69,7 @@ public class RoomDTO {
 		this.tv = tv;
 	}
 
-	public boolean isMinibar() {
+	public boolean hasMinibar() {
 		return minibar;
 	}
 
@@ -77,7 +77,7 @@ public class RoomDTO {
 		this.minibar = minibar;
 	}
 
-	public boolean isPhone() {
+	public boolean hasPhone() {
 		return phone;
 	}
 
@@ -85,7 +85,7 @@ public class RoomDTO {
 		this.phone = phone;
 	}
 
-	public boolean isAirConditioning() {
+	public boolean hasAirConditioning() {
 		return airConditioning;
 	}
 
@@ -93,7 +93,7 @@ public class RoomDTO {
 		this.airConditioning = airConditioning;
 	}
 
-	public boolean isBalcony() {
+	public boolean hasBalcony() {
 		return balcony;
 	}
 

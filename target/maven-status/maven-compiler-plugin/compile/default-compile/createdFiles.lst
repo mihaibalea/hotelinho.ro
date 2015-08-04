@@ -3,6 +3,7 @@ manager\impl\HotelinhoManagerImpl.class
 dao\model\PlaceToVisitDTO.class
 dao\model\PlaceCloseToHotelDTO.class
 manager\HotelinhoManager.class
+model\HotelBO.class
 dao\impl\HotelsDAOImpl.class
 utils\RoomMapper.class
 business\Business.class
@@ -11,6 +12,7 @@ dao\RoomsDAO.class
 business\impl\BusinessImpl.class
 utils\HotelMapper.class
 dao\model\CustomerDTO.class
+utils\Translator.class
 controller\HotelsController.class
 dao\model\BookingDTO.class
 dao\model\HotelDTO.class
