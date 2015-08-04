@@ -6,5 +6,6 @@ import dao.model.HotelDTO;
 
 public interface HotelsDAO {
 	public List<HotelDTO> getAllHotels();
+	public HotelDTO getHotelById(String id);
 
 }

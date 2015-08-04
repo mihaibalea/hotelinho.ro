@@ -16,4 +16,8 @@ public class BusinessImpl implements Business {
 		return hotelinhoManager.getAllHotels();
 	}
 
+	public HotelDTO getHotelById(String id) {
+		return hotelinhoManager.getHotelById(id);
+	}
+
 }

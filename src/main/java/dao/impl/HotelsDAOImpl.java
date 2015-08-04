@@ -20,4 +20,11 @@ public class HotelsDAOImpl implements HotelsDAO {
 		return jdbc.query(sql, new HotelMapper());
 	}
 
+	public HotelDTO getHotelById(String id) {
+		String sql = "select * from hotels where id=?";
+		HotelDTO hotel;
+		hotel =jdbc.queryForObject(sql, new Object[] { id }, new HotelMapper());
+		return hotel;
+	}
+
 }
