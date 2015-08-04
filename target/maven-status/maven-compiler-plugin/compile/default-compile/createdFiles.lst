@@ -4,6 +4,7 @@ dao\model\PlaceToVisitDTO.class
 dao\model\PlaceCloseToHotelDTO.class
 manager\HotelinhoManager.class
 dao\impl\HotelsDAOImpl.class
+utils\RoomMapper.class
 business\Business.class
 dao\HotelsDAO.class
 dao\RoomsDAO.class

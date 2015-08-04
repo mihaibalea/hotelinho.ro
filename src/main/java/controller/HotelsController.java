@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import business.Business;
 import dao.model.HotelDTO;
+import dao.model.RoomDTO;
 
 @RestController
 @RequestMapping("/hotels")
@@ -26,5 +27,10 @@ public class HotelsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public HotelDTO getHotelById(@PathVariable String id) {
 		return business.getHotelById(id);
+	}
+
+	@RequestMapping(value = "/{id}/rooms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<RoomDTO> getRoomsForHotel(@PathVariable String id) {
+		return business.getRoomsForHotel(id);
 	}
 }

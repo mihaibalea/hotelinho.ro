@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import business.Business;
 import dao.model.HotelDTO;
+import dao.model.RoomDTO;
 import manager.HotelinhoManager;
 
 public class BusinessImpl implements Business {
@@ -18,6 +19,10 @@ public class BusinessImpl implements Business {
 
 	public HotelDTO getHotelById(String id) {
 		return hotelinhoManager.getHotelById(id);
+	}
+
+	public List<RoomDTO> getRoomsForHotel(String id) {
+		return hotelinhoManager.getRoomsForHotel(id);
 	}
 
 }
