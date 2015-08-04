@@ -41,6 +41,5 @@ public class HotelsController {
 	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
 		System.out.println(parameters.toString());
 		return business.filterHotelsByFacilities();
-
 	}
 }
