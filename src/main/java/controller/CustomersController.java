@@ -7,15 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import business.Business;
-import dao.model.CustomerDTO;
+import business.HotelinhoBusinessServices;
 import model.CustomerBO;
 
 @RestController
 @RequestMapping("/customers")
 public class CustomersController {
 	@Autowired
-	private Business business;
+	private HotelinhoBusinessServices business;
 
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public CustomerBO addNewCustomer(@RequestBody CustomerBO customerBO) {

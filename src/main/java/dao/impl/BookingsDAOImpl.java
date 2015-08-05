@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import dao.BookingsDAO;
 import dao.model.BookingDTO;
+import utils.BookingMapper;
 
 public class BookingsDAOImpl implements BookingsDAO {
 	@Autowired
@@ -17,4 +18,8 @@ public class BookingsDAOImpl implements BookingsDAO {
 
 	}
 
+	public BookingDTO getBookingByCustomerId(String id) {
+		String sql = "select * from bookings where customerId=? ";
+		return jdbc.queryForObject(sql, new Object[] { id }, new BookingMapper());
+	}
 }

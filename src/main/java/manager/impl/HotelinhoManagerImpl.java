@@ -3,6 +3,8 @@ package manager.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +15,10 @@ import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
+import model.exception.ResourceNotFoundException;
 
 public class HotelinhoManagerImpl implements HotelinhoManager {
+	private static final Logger LOG=LoggerFactory.getLogger(HotelinhoManagerImpl.class);
 	@Autowired
 	private HotelsDAO hotelsDAO;
 	@Autowired
@@ -28,12 +32,23 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	}
 
 	@Transactional
-	public HotelDTO getHotelById(String id) {
-		return hotelsDAO.getHotelById(id);
+	public HotelDTO getHotelById(String id) throws ResourceNotFoundException {
+		HotelDTO hotel = hotelsDAO.getHotelById(id);
+		if (hotel == null) {
+			LOG.debug("method getHotelById() returned " + null);
+			throw new ResourceNotFoundException("The hotel with id: " + id + " does not exist");
+		}
+		LOG.debug("method getHotelById() returned hotel with id " + id);
+		return hotel;
 	}
 
 	@Transactional
-	public List<RoomDTO> getRoomsForHotel(String id) {
+	public List<RoomDTO> getRoomsForHotel(String id) throws ResourceNotFoundException {
+		HotelDTO hotel = hotelsDAO.getHotelById(id);
+		if (hotel == null) {
+			LOG.debug("method getRoomsForHotel() returned " + null);
+			throw new ResourceNotFoundException("The hotel with id: " + id + " does not exist");
+		}
 		return roomsDAO.getRoomsForHotel(id);
 	}
 
