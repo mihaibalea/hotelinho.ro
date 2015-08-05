@@ -29,10 +29,4 @@ public class HotelsDAOImpl implements HotelsDAO {
 		return hotel;
 	}
 
-	public List<RoomDTO> getRoomsForHotel(String id) {
-		String sql = "select * from rooms where hotelId=?";
-		List<RoomDTO> rooms;
-		rooms = jdbc.query(sql, new Object[] { id }, new RoomMapper());
-		return rooms;
-	}
 }
