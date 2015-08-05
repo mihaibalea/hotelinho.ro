@@ -2,16 +2,22 @@ package dao.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import dao.HotelsDAO;
 import dao.model.HotelDTO;
-import dao.model.RoomDTO;
+import manager.impl.HotelinhoManagerImpl;
 import utils.HotelMapper;
-import utils.RoomMapper;
 
 public class HotelsDAOImpl implements HotelsDAO {
+	@Autowired
 	private JdbcTemplate jdbc;
+	
+	private static final Logger LOG=LoggerFactory.getLogger(HotelsDAOImpl.class);
 
 	public HotelsDAOImpl(JdbcTemplate jdbc) {
 		this.jdbc = jdbc;
@@ -25,14 +31,14 @@ public class HotelsDAOImpl implements HotelsDAO {
 	public HotelDTO getHotelById(String id) {
 		String sql = "select * from hotels where id=?";
 		HotelDTO hotel;
-		hotel = jdbc.queryForObject(sql, new Object[] { id }, new HotelMapper());
+		try {
+			hotel = jdbc.queryForObject(sql, new Object[] { id }, new HotelMapper());
+		} catch (EmptyResultDataAccessException e) {
+			LOG.debug("method getHotelById() returned " + null);
+			return null;
+		}
+		LOG.debug("method getHotelById() returned hotel with id " + id);
 		return hotel;
 	}
 
-	public List<RoomDTO> getRoomsForHotel(String id) {
-		String sql = "select * from rooms where hotelId=?";
-		List<RoomDTO> rooms;
-		rooms = jdbc.query(sql, new Object[] { id }, new RoomMapper());
-		return rooms;
-	}
 }

@@ -21,7 +21,7 @@
 
 	<bean id="hotelinhoManagerImpl" class="manager.impl.HotelinhoManagerImpl"></bean>
 
-	<bean id="businessImpl" class="business.impl.BusinessImpl"></bean>
+	<bean id="hotelinhoBusinessServicesImpl" class="business.impl.HotelinhoBusinessServicesImpl"></bean>
 
 	<bean id="hotelsController" class="controller.HotelsController"></bean>
 
@@ -30,6 +30,12 @@
 	<bean id="customersController" class="controller.CustomersController"></bean>
 
 	<bean id="customerDAOImpl" class="dao.impl.CustomerDAOImpl"></bean>
+	
+	<bean id="roomsDAOImpl" class="dao.impl.RoomsDAOImpl"></bean>
+	
+	<bean id="bookingsDAOImpl" class="dao.impl.BookingsDAOImpl"></bean>
+	
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
