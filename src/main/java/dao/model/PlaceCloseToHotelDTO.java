@@ -9,6 +9,7 @@ public class PlaceCloseToHotelDTO {
 	private String guidance;
 	private String specifications;
 
+
 	public String getId() {
 		return id;
 	}

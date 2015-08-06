@@ -7,10 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import dao.CustomersDAO;
 import dao.HotelsDAO;
+import dao.PlacesDAO;
 import dao.RoomsDAO;
+import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
@@ -25,6 +28,8 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	private CustomersDAO customersDAO;
 	@Autowired
 	private RoomsDAO roomsDAO;
+	@Autowired
+	private PlacesDAO placesDAO;
 
 	@Transactional
 	public List<HotelDTO> getAllHotels() {
@@ -59,4 +64,8 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 		customersDAO.addNewCustomer(customerDTO);
 	}
 
+	@Transactional
+	public List<CompletePlaceDTO> getPlacesForHotel(@PathVariable String id){
+		return placesDAO.getPlacesForHotel(id);
+	}
 }

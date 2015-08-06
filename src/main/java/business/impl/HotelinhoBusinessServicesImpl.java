@@ -6,11 +6,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import business.HotelinhoBusinessServices;
+import dao.model.CompletePlaceDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
+import model.CompletePlaceBO;
 import model.CustomerBO;
 import model.HotelBO;
 import model.exception.ResourceNotFoundException;
@@ -51,4 +54,7 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 		hotelinhoManager.addNewCustomer(translator.translateCustomerBOtoCustomerDTO(customerBO));
 	}
 
+	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id){
+		return translator.translateListOfCompletePlacesDTOtoListOfCompletePlacesBO(hotelinhoManager.getPlacesForHotel(id));
+	}
 }

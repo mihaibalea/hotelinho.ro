@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mysql.jdbc.log.LogFactory;
-
 import business.HotelinhoBusinessServices;
+import dao.model.CompletePlaceDTO;
 import dao.model.HotelDTO;
 import dao.model.PlaceCloseToHotelDTO;
+import dao.model.PlaceToVisitDTO;
 import dao.model.RoomDTO;
+import model.CompletePlaceBO;
 import model.HotelBO;
 import model.exception.ResourceNotFoundException;
 
@@ -47,16 +48,26 @@ public class HotelsController {
 		return business.getRoomsForHotel(id);
 	}
 
-	@RequestMapping(value = "/filtered", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
-		return business.filterHotelsByFacilities();
-	}
+	// @RequestMapping( method = RequestMethod.GET, produces =
+	// MediaType.APPLICATION_JSON_VALUE)
+	// public List<HotelDTO> filterHotelsByFacilities(@RequestParam HotelBO
+	// hotelBO) {
+	// HotelBO hotelBO=new HotelBO();
+	// hotelBO.setPool(parameters.get("pool").equals("YES"));
+	// LOG.error(hotelBO.isPool()+" ");
+	//
+	// return business.filterHotelsByFacilities();
+	// }
 
 	@RequestMapping(value = "/{id}/places", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PlaceCloseToHotelDTO> getPlacesCloseToHotel(@PathVariable String id) {
-		// return business.getPlacesCloseToHotel(id);
-		return null;
+	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id) {
+		return business.getPlacesForHotel(id);
 	}
+
+	// ***********************************************************************************************
+	// *******************************Exception handler
+	// functions*************************************
+	// ***********************************************************************************************
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
