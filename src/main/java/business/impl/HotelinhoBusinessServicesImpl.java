@@ -57,4 +57,9 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id){
 		return translator.translateListOfCompletePlacesDTOtoListOfCompletePlacesBO(hotelinhoManager.getPlacesForHotel(id));
 	}
+	
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException{
+		return hotelinhoManager.getSelectedRoom(hotelId, roomId);
+		
+	}
 }

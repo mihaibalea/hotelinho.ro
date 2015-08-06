@@ -24,4 +24,6 @@ public interface HotelinhoBusinessServices {
 	public void addNewCustomer(CustomerBO customerBO);
 
 	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id);
+	
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
 }

@@ -21,7 +21,7 @@ import manager.HotelinhoManager;
 import model.exception.ResourceNotFoundException;
 
 public class HotelinhoManagerImpl implements HotelinhoManager {
-	private static final Logger LOG=LoggerFactory.getLogger(HotelinhoManagerImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(HotelinhoManagerImpl.class);
 	@Autowired
 	private HotelsDAO hotelsDAO;
 	@Autowired
@@ -65,7 +65,20 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	}
 
 	@Transactional
-	public List<CompletePlaceDTO> getPlacesForHotel(@PathVariable String id){
+	public List<CompletePlaceDTO> getPlacesForHotel(@PathVariable String id) {
 		return placesDAO.getPlacesForHotel(id);
+	}
+
+	@Transactional
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException{
+		List<RoomDTO> listOfRooms =roomsDAO.getRoomsForHotel(hotelId);
+		for(RoomDTO roomDTO : listOfRooms){
+			if(roomDTO.getId()==roomId)
+				LOG.debug(roomDTO.getId());
+				return roomDTO;
+		}
+		throw new ResourceNotFoundException("The room with id "+roomId+" does not eist");
+		
+		
 	}
 }

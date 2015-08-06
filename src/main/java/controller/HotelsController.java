@@ -64,8 +64,16 @@ public class HotelsController {
 		return business.getPlacesForHotel(id);
 	}
 
+	@RequestMapping(value = "/{id}/room", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public RoomDTO getSelectedRoom(@PathVariable String id, @RequestParam(value = "id") String idd)
+			throws ResourceNotFoundException {
+		return business.getSelectedRoom(id, idd);
+
+	}
+
 	// ***********************************************************************************************
-	// *******************************Exception handler functions*************************************
+	// *************>>>>>>>>>>>>>> Exception handler functions
+	// <<<<<<<<<<<<<<*********************
 	// ***********************************************************************************************
 
 	@ExceptionHandler(ResourceNotFoundException.class)
