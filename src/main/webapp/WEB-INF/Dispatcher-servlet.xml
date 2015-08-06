@@ -35,6 +35,8 @@
 	
 	<bean id="bookingsDAOImpl" class="dao.impl.BookingsDAOImpl"></bean>
 	
+	<bean id="placesDAOImpl" class="dao.impl.PlacesDAOImpl"></bean>
+	
 	
 
 	<bean

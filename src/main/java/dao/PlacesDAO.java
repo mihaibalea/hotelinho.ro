@@ -2,9 +2,9 @@ package dao;
 
 import java.util.List;
 
-import dao.model.PlaceToVisitDTO;
+import dao.model.CompletePlaceDTO;
 
 public interface PlacesDAO {
-	public List<PlaceToVisitDTO> getPlacesForHotel(String id);
+	public List<CompletePlaceDTO> getPlacesForHotel(String id);
 
 }

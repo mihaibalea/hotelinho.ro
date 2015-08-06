@@ -3,8 +3,10 @@ package utils;
 import java.util.LinkedList;
 import java.util.List;
 
+import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
+import model.CompletePlaceBO;
 import model.CustomerBO;
 import model.HotelBO;
 
@@ -90,5 +92,31 @@ public class Translator {
 		customerDTO.setRegistrationDate(customerBO.getRegistrationDate());
 		return customerDTO;
 	}
+	
+	public CompletePlaceBO translateCompletePlaceDTOtoCompletePlaceBO(CompletePlaceDTO completePlaceDTO){
+		CompletePlaceBO completePlaceBo=new CompletePlaceBO();
+		completePlaceBo.setName(completePlaceDTO.getPlaceToVisit().getName());
+		completePlaceBo.setAddress(completePlaceDTO.getPlaceToVisit().getAddress());
+		completePlaceBo.setType(completePlaceDTO.getPlaceToVisit().getType());
+		completePlaceBo.setCarAcces(completePlaceDTO.getPlaceToVisit().isCarAcces());
+		completePlaceBo.setDescription(completePlaceDTO.getPlaceToVisit().getDescription());
+		completePlaceBo.setDistance(completePlaceDTO.getPlaceCloseToHotel().getDistance());
+		completePlaceBo.setGuidance(completePlaceDTO.getPlaceCloseToHotel().getGuidance());
+		completePlaceBo.setSpecifications(completePlaceDTO.getPlaceCloseToHotel().getSpecifications());
+		
+		return completePlaceBo;
+		
+	}
+	
+	
+	public List<CompletePlaceBO> translateListOfCompletePlacesDTOtoListOfCompletePlacesBO(List<CompletePlaceDTO> listDTO) {
+		List<CompletePlaceBO> listBO = new LinkedList<CompletePlaceBO>();
+		for (CompletePlaceDTO completePlaceDTO: listDTO) {
+			listBO.add(translateCompletePlaceDTOtoCompletePlaceBO(completePlaceDTO));
+		}
+		return listBO;
+	}
+	
+	
 
 }
