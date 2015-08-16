@@ -11,7 +11,7 @@ import business.HotelinhoBusinessServices;
 import model.CustomerBO;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/users")
 public class CustomersController {
 	@Autowired
 	private HotelinhoBusinessServices business;
