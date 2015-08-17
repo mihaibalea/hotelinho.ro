@@ -17,7 +17,7 @@ import model.CustomerBO;
 import model.exception.ResourceNotFoundException;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/users")
 public class CustomersController {
 	@Autowired
 	private HotelinhoBusinessServices business;
