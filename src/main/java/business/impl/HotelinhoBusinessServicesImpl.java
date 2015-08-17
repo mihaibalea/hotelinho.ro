@@ -27,7 +27,7 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 	@Autowired
 	private Translator translator;
 
-	public List<HotelDTO> getAllCourses() {
+	public List<HotelDTO> getAllHotels() {
 		return hotelinhoManager.getAllHotels();
 	}
 
@@ -56,5 +56,10 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 
 	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id){
 		return translator.translateListOfCompletePlacesDTOtoListOfCompletePlacesBO(hotelinhoManager.getPlacesForHotel(id));
+	}
+
+	public CustomerBO login(String username, String password) throws ResourceNotFoundException {
+		return translator.translateCustomerDTOtoCustomerBO(hotelinhoManager.login(username,password));
+	
 	}
 }

@@ -16,5 +16,6 @@ public interface HotelinhoManager {
 	public List<RoomDTO> getRoomsForHotel(String id) throws ResourceNotFoundException;
 	public void addNewCustomer(CustomerDTO customerDTO);
 	public List<CompletePlaceDTO> getPlacesForHotel(@PathVariable String id);
+	public CustomerDTO login(String username, String password) throws ResourceNotFoundException;
 
 }
