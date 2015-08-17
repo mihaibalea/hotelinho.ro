@@ -13,7 +13,7 @@ import model.HotelBO;
 import model.exception.ResourceNotFoundException;
 
 public interface HotelinhoBusinessServices {
-	public List<HotelDTO> getAllCourses();
+	public List<HotelDTO> getAllHotels();
 
 	public HotelBO getHotelById(String id) throws ResourceNotFoundException;
 
@@ -26,4 +26,6 @@ public interface HotelinhoBusinessServices {
 	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id);
 	
 	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
+
+	public CustomerBO login(String username, String password) throws ResourceNotFoundException;
 }

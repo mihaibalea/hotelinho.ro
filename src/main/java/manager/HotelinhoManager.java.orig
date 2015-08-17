@@ -1,0 +1,24 @@
+package manager;
+
+import java.util.List;
+
+import dao.model.CompletePlaceDTO;
+import dao.model.CustomerDTO;
+import dao.model.HotelDTO;
+import dao.model.RoomDTO;
+import model.exception.ResourceNotFoundException;
+
+public interface HotelinhoManager {
+	public List<HotelDTO> getAllHotels();
+	public HotelDTO getHotelById(String id) throws ResourceNotFoundException;
+	public List<RoomDTO> getRoomsForHotel(String id) throws ResourceNotFoundException;
+	public void addNewCustomer(CustomerDTO customerDTO);
+<<<<<<< HEAD
+	public List<CompletePlaceDTO> getPlacesForHotel(String id);
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
+=======
+	public List<CompletePlaceDTO> getPlacesForHotel(@PathVariable String id);
+	public CustomerDTO login(String username, String password) throws ResourceNotFoundException;
+>>>>>>> 5e0d99de764a6644f1f960664108c930b4a1ecf1
+
+}

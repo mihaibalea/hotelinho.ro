@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,15 +11,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.HotelinhoBusinessServices;
-import dao.model.CompletePlaceDTO;
 import dao.model.HotelDTO;
-import dao.model.PlaceCloseToHotelDTO;
-import dao.model.PlaceToVisitDTO;
 import dao.model.RoomDTO;
 import model.CompletePlaceBO;
 import model.HotelBO;
@@ -35,7 +30,7 @@ public class HotelsController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HotelDTO> getAllHotels() {
-		return business.getAllCourses();
+		return business.getAllHotels();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

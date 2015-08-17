@@ -81,4 +81,13 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 		
 		
 	}
+
+	public CustomerDTO login(String username, String password) throws ResourceNotFoundException {
+		CustomerDTO customerDTO=customersDAO.logIn(username, password);
+		if(customerDTO==null){
+			throw new ResourceNotFoundException("Invalid username or password");
+		}
+		return customerDTO;
+		
+	}
 }
