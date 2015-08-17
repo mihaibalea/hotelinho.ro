@@ -13,6 +13,7 @@ import dao.model.CompletePlaceDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
+import model.BookingBO;
 import model.CompletePlaceBO;
 import model.CustomerBO;
 import model.HotelBO;
@@ -61,5 +62,15 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 	public CustomerBO login(String username, String password) throws ResourceNotFoundException {
 		return translator.translateCustomerDTOtoCustomerBO(hotelinhoManager.login(username,password));
 	
+	}
+	
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException{
+		return hotelinhoManager.getSelectedRoom(hotelId, roomId);
+		
+	}
+
+	public void createNewBooking(BookingBO bookingBO) {
+		hotelinhoManager.createNewBooking(translator.translateBookingBOToBookingDTO(bookingBO));
+		
 	}
 }
