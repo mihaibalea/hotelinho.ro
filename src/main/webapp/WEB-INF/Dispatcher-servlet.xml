@@ -38,6 +38,7 @@
 	<bean id="placesDAOImpl" class="dao.impl.PlacesDAOImpl"></bean>
 	
 	
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

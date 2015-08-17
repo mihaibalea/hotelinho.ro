@@ -1,6 +1,12 @@
 package controller;
 
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,14 +15,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.HotelinhoBusinessServices;
+import dao.model.BookingDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
+import model.BookingBO;
 import model.CompletePlaceBO;
 import model.HotelBO;
 import model.exception.ResourceNotFoundException;
@@ -43,6 +53,15 @@ public class HotelsController {
 		return business.getRoomsForHotel(id);
 	}
 
+	@RequestMapping(value="/{id}/room",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void createNewBooking(@PathVariable String id,@RequestParam(value = "id") String roomId,@RequestBody BookingBO bookingBO) throws ParseException{
+		bookingBO.setRoomId(roomId);
+		business.createNewBooking(bookingBO);
+	}
+	
+	
+	
+	
 	// @RequestMapping( method = RequestMethod.GET, produces =
 	// MediaType.APPLICATION_JSON_VALUE)
 	// public List<HotelDTO> filterHotelsByFacilities(@RequestParam HotelBO
@@ -60,9 +79,10 @@ public class HotelsController {
 	}
 
 	@RequestMapping(value = "/{id}/room", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public RoomDTO getSelectedRoom(@PathVariable String id, @RequestParam(value = "id") String idd)
+	public RoomDTO getSelectedRoom(@PathVariable String id, @RequestParam(value = "id") String roomId)
 			throws ResourceNotFoundException {
-		return business.getSelectedRoom(id, idd);
+		LOG.debug(id+" "+roomId);
+		return business.getSelectedRoom(id, roomId);
 
 	}
 

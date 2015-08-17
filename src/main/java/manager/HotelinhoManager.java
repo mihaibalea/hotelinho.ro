@@ -2,6 +2,7 @@ package manager;
 
 import java.util.List;
 
+import dao.model.BookingDTO;
 import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
@@ -16,5 +17,6 @@ public interface HotelinhoManager {
 	public List<CompletePlaceDTO> getPlacesForHotel(String id);
 	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
 	public CustomerDTO login(String username, String password) throws ResourceNotFoundException;
+	public void createNewBooking(BookingDTO bookingDTO);
 
 }

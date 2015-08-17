@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
+import dao.model.BookingDTO;
 import dao.model.CompletePlaceDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
+import model.BookingBO;
 import model.CompletePlaceBO;
 import model.CustomerBO;
 import model.HotelBO;
@@ -28,4 +30,6 @@ public interface HotelinhoBusinessServices {
 	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
 
 	public CustomerBO login(String username, String password) throws ResourceNotFoundException;
+	
+	public void createNewBooking(BookingBO bookingBO);
 }

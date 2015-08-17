@@ -9,15 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import dao.BookingsDAO;
 import dao.CustomersDAO;
 import dao.HotelsDAO;
 import dao.PlacesDAO;
 import dao.RoomsDAO;
+import dao.model.BookingDTO;
 import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
+import model.BookingBO;
 import model.exception.ResourceNotFoundException;
 
 public class HotelinhoManagerImpl implements HotelinhoManager {
@@ -30,6 +33,8 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	private RoomsDAO roomsDAO;
 	@Autowired
 	private PlacesDAO placesDAO;
+	@Autowired
+	private BookingsDAO bookingsDAO;
 
 	@Transactional
 	public List<HotelDTO> getAllHotels() {
@@ -70,24 +75,34 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 	}
 
 	@Transactional
-	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException{
-		List<RoomDTO> listOfRooms =roomsDAO.getRoomsForHotel(hotelId);
-		for(RoomDTO roomDTO : listOfRooms){
-			if(roomDTO.getId()==roomId)
+	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException {
+		List<RoomDTO> listOfRooms = roomsDAO.getRoomsForHotel(hotelId);
+		for (RoomDTO roomDTO : listOfRooms) {
+			if (roomDTO.getId().equals(roomId)) {
 				LOG.debug(roomDTO.getId());
 				return roomDTO;
+			}
 		}
-		throw new ResourceNotFoundException("The room with id "+roomId+" does not eist");
-		
-		
+		throw new ResourceNotFoundException("The room with id " + roomId + " does not eist");
+
 	}
 
+	@Transactional
 	public CustomerDTO login(String username, String password) throws ResourceNotFoundException {
-		CustomerDTO customerDTO=customersDAO.logIn(username, password);
-		if(customerDTO==null){
+		CustomerDTO customerDTO = customersDAO.logIn(username, password);
+		if (customerDTO == null) {
 			throw new ResourceNotFoundException("Invalid username or password");
 		}
 		return customerDTO;
+
+	}
+	
+	
+	@Transactional
+	public void createNewBooking(BookingDTO bookingDTO){
+		UUID uuid=UUID.randomUUID();
+		bookingDTO.setId(uuid.toString());
+		bookingsDAO.createNewBooking(bookingDTO);
 		
 	}
 }

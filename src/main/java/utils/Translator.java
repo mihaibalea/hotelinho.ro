@@ -3,9 +3,11 @@ package utils;
 import java.util.LinkedList;
 import java.util.List;
 
+import dao.model.BookingDTO;
 import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
+import model.BookingBO;
 import model.CompletePlaceBO;
 import model.CustomerBO;
 import model.HotelBO;
@@ -117,6 +119,16 @@ public class Translator {
 		return listBO;
 	}
 	
-	
+	public BookingDTO translateBookingBOToBookingDTO(BookingBO bookingBO){
+		BookingDTO bookingDTO=new BookingDTO();
+		
+		bookingDTO.setCustomerId(bookingBO.getCustomerId());
+		bookingDTO.setRoomId(bookingBO.getRoomId());
+		bookingDTO.setCheckin(bookingBO.getCheckin());
+		bookingDTO.setCheckout(bookingBO.getCheckout());
+		bookingDTO.setOtherSpecifications(bookingBO.getOtherSpecifications());
+		
+		return bookingDTO;
+	}
 
 }

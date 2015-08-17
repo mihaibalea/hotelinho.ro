@@ -22,6 +22,7 @@ business\HotelinhoBusinessServices.class
 dao\model\PlaceCloseToHotelDTO.class
 model\HotelBO.class
 dao\impl\HotelsDAOImpl.class
+model\BookingBO.class
 controller\CustomersController.class
 dao\HotelsDAO.class
 utils\HotelMapper.class
