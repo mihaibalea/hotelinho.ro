@@ -45,9 +45,9 @@ public class HotelinhoBusinessServicesImpl implements HotelinhoBusinessServices 
 		return list;
 	}
 
-	public List<HotelDTO> filterHotelsByFacilities() {
+	public List<HotelDTO> filterHotelsByFacilities(HotelBO hotelBO) {
 
-		return new LinkedList<HotelDTO>();
+		return hotelinhoManager.filterHotelsByFacilities(hotelBO);
 
 	}
 

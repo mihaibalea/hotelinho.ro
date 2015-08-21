@@ -62,16 +62,20 @@ public class HotelsController {
 	
 	
 	
-	// @RequestMapping( method = RequestMethod.GET, produces =
-	// MediaType.APPLICATION_JSON_VALUE)
-	// public List<HotelDTO> filterHotelsByFacilities(@RequestParam HotelBO
-	// hotelBO) {
-	// HotelBO hotelBO=new HotelBO();
-	// hotelBO.setPool(parameters.get("pool").equals("YES"));
-	// LOG.error(hotelBO.isPool()+" ");
-	//
-	// return business.filterHotelsByFacilities();
-	// }
+	@RequestMapping(value="/filter",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
+		HotelBO hotelBO = new HotelBO();
+		hotelBO.setPool(parameters.get("pool").equals("YES"));
+		hotelBO.setRestaurant(parameters.get("restaurant").toString().equals("YES"));
+		hotelBO.setPlayground(parameters.get("playground").equals("YES"));
+		hotelBO.setParking(parameters.get("parking").equals("YES"));
+		hotelBO.setWireless(parameters.get("wireless").equals("YES"));
+		hotelBO.setRoomService(parameters.get("roomService").equals("YES"));
+		hotelBO.setAirConditioning(parameters.get("airConditioning").equals("YES"));
+		
+		
+		return business.filterHotelsByFacilities(hotelBO);
+	}
 
 	@RequestMapping(value = "/{id}/places", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<CompletePlaceBO> getPlacesForHotel(@PathVariable String id) {

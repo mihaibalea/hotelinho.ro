@@ -21,6 +21,7 @@ import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import manager.HotelinhoManager;
 import model.BookingBO;
+import model.HotelBO;
 import model.exception.ResourceNotFoundException;
 
 public class HotelinhoManagerImpl implements HotelinhoManager {
@@ -104,5 +105,28 @@ public class HotelinhoManagerImpl implements HotelinhoManager {
 		bookingDTO.setId(uuid.toString());
 		bookingsDAO.createNewBooking(bookingDTO);
 		
+	}
+	@Transactional
+	public List<HotelDTO> filterHotelsByFacilities(HotelBO hotelBO) {
+		String sql="";
+		if (hotelBO.isPool()==true)
+			sql+="pool='YES' and ";
+			
+		
+		if(hotelBO.isRestaurant()==true)
+			sql+="restaurant='YES' and ";
+		if(hotelBO.isPlayground()==true)
+			sql+="playground='YES' and ";
+		if(hotelBO.isParking()==true)
+			sql+="parking='YES' and ";
+		if(hotelBO.isWireless()==true)
+			sql+="wireless='YES' and ";
+		if(hotelBO.isRoomService()==true)
+			sql+="roomService='YES' and ";
+		if(hotelBO.isAirConditioning()==true)
+			sql+="airConditioning='YES' and ";
+		sql+="1;";
+		
+		return hotelsDAO.filterHotelsByFacilities(sql);
 	}
 }

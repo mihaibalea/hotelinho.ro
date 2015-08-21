@@ -7,6 +7,7 @@ import dao.model.CompletePlaceDTO;
 import dao.model.CustomerDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
+import model.HotelBO;
 import model.exception.ResourceNotFoundException;
 
 public interface HotelinhoManager {
@@ -18,5 +19,6 @@ public interface HotelinhoManager {
 	public RoomDTO getSelectedRoom(String hotelId, String roomId) throws ResourceNotFoundException;
 	public CustomerDTO login(String username, String password) throws ResourceNotFoundException;
 	public void createNewBooking(BookingDTO bookingDTO);
+	public List<HotelDTO> filterHotelsByFacilities(HotelBO hotelBO);
 
 }

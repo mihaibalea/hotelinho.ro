@@ -21,7 +21,7 @@ public interface HotelinhoBusinessServices {
 
 	public List<RoomDTO> getRoomsForHotel(String id) throws ResourceNotFoundException;
 
-	public List<HotelDTO> filterHotelsByFacilities();
+	public List<HotelDTO> filterHotelsByFacilities(HotelBO hotelBO);
 
 	public void addNewCustomer(CustomerBO customerBO);
 
