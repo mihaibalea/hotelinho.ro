@@ -41,4 +41,10 @@ public class HotelsDAOImpl implements HotelsDAO {
 		return hotel;
 	}
 
+	public List<HotelDTO> filterHotelsByFacilities(String sql) {
+		String querry="select * from hotels where "+sql;
+		System.out.println(querry);
+		return jdbc.query(querry, new HotelMapper());
+	}
+
 }

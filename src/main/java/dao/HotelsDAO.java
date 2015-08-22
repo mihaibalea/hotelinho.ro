@@ -8,4 +8,6 @@ public interface HotelsDAO {
 	public List<HotelDTO> getAllHotels();
 
 	public HotelDTO getHotelById(String id);
+
+	public List<HotelDTO> filterHotelsByFacilities(String sql);
 }
