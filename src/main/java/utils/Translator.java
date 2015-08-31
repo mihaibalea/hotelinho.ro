@@ -28,6 +28,7 @@ public class Translator {
 		hotelBO.setWireless(hotelDTO.isWireless());
 		hotelBO.setRoomService(hotelDTO.isRoomService());
 		hotelBO.setAirConditioning(hotelDTO.isAirConditioning());
+	
 		return hotelBO;
 	}
 
@@ -46,6 +47,7 @@ public class Translator {
 		hotelDTO.setWireless(hotelBO.isWireless());
 		hotelDTO.setRoomService(hotelBO.isRoomService());
 		hotelDTO.setAirConditioning(hotelBO.isAirConditioning());
+		
 
 		return hotelDTO;
 
