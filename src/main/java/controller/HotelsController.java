@@ -1,10 +1,6 @@
 package controller;
 
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import business.HotelinhoBusinessServices;
-import dao.model.BookingDTO;
 import dao.model.HotelDTO;
 import dao.model.RoomDTO;
 import model.BookingBO;
@@ -43,6 +39,14 @@ public class HotelsController {
 		return business.getAllHotels();
 	}
 
+	// @RequestMapping(method = RequestMethod.GET, produces =
+	// MediaType.APPLICATION_JSON_VALUE)
+	// public ModelAndView getAllHotels(){
+	// ModelAndView modelPage=new ModelAndView("hotels");
+	// modelPage.addObject("hotels",business.getAllHotels());
+	// return modelPage;
+	// }
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public HotelBO getHotelById(@PathVariable String id) throws ResourceNotFoundException {
 		return business.getHotelById(id);
@@ -53,16 +57,14 @@ public class HotelsController {
 		return business.getRoomsForHotel(id);
 	}
 
-	@RequestMapping(value="/{id}/room",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void createNewBooking(@PathVariable String id,@RequestParam(value = "id") String roomId,@RequestBody BookingBO bookingBO) throws ParseException{
+	@RequestMapping(value = "/{id}/room", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void createNewBooking(@PathVariable String id, @RequestParam(value = "id") String roomId,
+			@RequestBody BookingBO bookingBO) throws ParseException {
 		bookingBO.setRoomId(roomId);
 		business.createNewBooking(bookingBO);
 	}
-	
-	
-	
-	
-	@RequestMapping(value="/filter",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HotelDTO> filterHotelsByFacilities(@RequestParam Map<String, String> parameters) {
 		HotelBO hotelBO = new HotelBO();
 		hotelBO.setPool(parameters.get("pool").equals("YES"));
@@ -72,8 +74,7 @@ public class HotelsController {
 		hotelBO.setWireless(parameters.get("wireless").equals("YES"));
 		hotelBO.setRoomService(parameters.get("roomService").equals("YES"));
 		hotelBO.setAirConditioning(parameters.get("airConditioning").equals("YES"));
-		
-		
+
 		return business.filterHotelsByFacilities(hotelBO);
 	}
 
@@ -85,7 +86,7 @@ public class HotelsController {
 	@RequestMapping(value = "/{id}/room", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public RoomDTO getSelectedRoom(@PathVariable String id, @RequestParam(value = "id") String roomId)
 			throws ResourceNotFoundException {
-		LOG.debug(id+" "+roomId);
+		LOG.debug(id + " " + roomId);
 		return business.getSelectedRoom(id, roomId);
 
 	}

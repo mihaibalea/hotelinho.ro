@@ -21,6 +21,9 @@ public class CompletePlaceMapper implements RowMapper<CompletePlaceDTO> {
 		placeToVisit.setType(rs.getString("type"));
 		placeToVisit.setCarAcces(rs.getString("carAcces").equals("YES"));
 		placeToVisit.setDescription(rs.getString("description"));
+		placeToVisit.setLat(rs.getString("lat"));
+		placeToVisit.setLng(rs.getString("lng"));
+		placeToVisit.setPhoto(rs.getString("photo"));
 		placeCloseToHotel.setId(rs.getString("idd"));
 		placeCloseToHotel.setPlaceId(rs.getString("placeId"));
 		placeCloseToHotel.setHotelId(rs.getString("hotelId"));

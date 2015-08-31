@@ -99,12 +99,14 @@ public class Translator {
 		CompletePlaceBO completePlaceBo=new CompletePlaceBO();
 		completePlaceBo.setName(completePlaceDTO.getPlaceToVisit().getName());
 		completePlaceBo.setAddress(completePlaceDTO.getPlaceToVisit().getAddress());
-		completePlaceBo.setType(completePlaceDTO.getPlaceToVisit().getType());
-		completePlaceBo.setCarAcces(completePlaceDTO.getPlaceToVisit().isCarAcces());
+		
 		completePlaceBo.setDescription(completePlaceDTO.getPlaceToVisit().getDescription());
 		completePlaceBo.setDistance(completePlaceDTO.getPlaceCloseToHotel().getDistance());
 		completePlaceBo.setGuidance(completePlaceDTO.getPlaceCloseToHotel().getGuidance());
 		completePlaceBo.setSpecifications(completePlaceDTO.getPlaceCloseToHotel().getSpecifications());
+		completePlaceBo.setLat(completePlaceDTO.getPlaceToVisit().getLat());
+		completePlaceBo.setLng(completePlaceDTO.getPlaceToVisit().getLng());
+		completePlaceBo.setPhoto(completePlaceDTO.getPlaceToVisit().getPhoto());
 		
 		return completePlaceBo;
 		
