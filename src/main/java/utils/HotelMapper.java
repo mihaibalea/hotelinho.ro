@@ -25,6 +25,9 @@ public class HotelMapper implements RowMapper<HotelDTO> {
 		hotel.setLat(rs.getString("lat"));
 		hotel.setLng(rs.getString("lng"));
 		hotel.setPhoto(rs.getString("photo"));
+		hotel.setDescription(rs.getString("description"));
+		hotel.setShortDescription(rs.getString("shortDescription"));
+		hotel.setNearbyPlacesUrl(rs.getString("nearbyPlacesUrl"));
 
 		return hotel;
 	}
