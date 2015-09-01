@@ -3,12 +3,37 @@ package model;
 public class CompletePlaceBO {
 	private String name;
 	private String address;
-	private String type;
-	private boolean carAcces;
 	private String description;
 	private int distance;
 	private String guidance;
 	private String specifications;
+	private String lat;
+	private String lng;
+	private String photo;
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public String getName() {
 		return name;
@@ -26,13 +51,7 @@ public class CompletePlaceBO {
 		this.address = address;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
+	
 
 	public String getDescription() {
 		return description;
@@ -66,12 +85,6 @@ public class CompletePlaceBO {
 		this.specifications = specifications;
 	}
 
-	public boolean isCarAcces() {
-		return carAcces;
-	}
-
-	public void setCarAcces(boolean carAcces) {
-		this.carAcces = carAcces;
-	}
+	
 
 }

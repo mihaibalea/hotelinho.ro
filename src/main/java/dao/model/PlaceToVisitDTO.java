@@ -7,6 +7,9 @@ public class PlaceToVisitDTO {
 	private String type;
 	private boolean carAcces;
 	private String description;
+	private String lat;
+	private String lng;
+	private String photo;
 
 	public String getId() {
 		return id;
@@ -54,6 +57,30 @@ public class PlaceToVisitDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }

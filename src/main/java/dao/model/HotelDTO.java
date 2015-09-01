@@ -13,6 +13,9 @@ public class HotelDTO {
 	private boolean wireless;
 	private boolean roomService;
 	private boolean airConditioning;
+	private String lat;
+	private String lng;
+	private String photo;
 
 	public String getId() {
 		return id;
@@ -109,5 +112,31 @@ public class HotelDTO {
 	public void setAirConditioning(boolean airConditioning) {
 		this.airConditioning = airConditioning;
 	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
 
 }
