@@ -16,6 +16,35 @@ public class HotelDTO {
 	private String lat;
 	private String lng;
 	private String photo;
+	private String description;
+	private String shortDescription;
+	private String nearbyPlacesUrl;
+	
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+
+	public String getNearbyPlacesUrl() {
+		return nearbyPlacesUrl;
+	}
+
+	public void setNearbyPlacesUrl(String nearbyPlacesUrl) {
+		this.nearbyPlacesUrl = nearbyPlacesUrl;
+	}
 
 	public String getId() {
 		return id;

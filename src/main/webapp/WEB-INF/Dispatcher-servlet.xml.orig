@@ -30,21 +30,23 @@
 	<bean id="customersController" class="controller.CustomersController"></bean>
 
 	<bean id="customerDAOImpl" class="dao.impl.CustomerDAOImpl"></bean>
-
+	
 	<bean id="roomsDAOImpl" class="dao.impl.RoomsDAOImpl"></bean>
-
+	
 	<bean id="bookingsDAOImpl" class="dao.impl.BookingsDAOImpl"></bean>
-
+	
 	<bean id="placesDAOImpl" class="dao.impl.PlacesDAOImpl"></bean>
-
-
-
+	
+	
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 
-			<value>/</value>
+			
+
+			<value>/WEB-INF</value>
 
 		</property>
 		<property name="suffix">

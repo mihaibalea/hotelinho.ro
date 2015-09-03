@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -20,10 +21,16 @@
       </div>
     </section>
   </body>
+=======
+<body>
+<h2>Hello World!</h2>
+<a href="http://localhost:8080/hotelinhoServices/hotels">HOTELs</a>
+</body>
+>>>>>>> 84226dbf171d626856ecd5ac1591da2a53a4588b
 </html>
 <section class="homepage-main-banner">
   <div class="container">
-    <h1 class="font__size--medium font__primary--thin color__text--light">You’re going on holiday and you need a hotel?</h1>
+    <h1 class="font__size--medium font__primary--thin color__text--light">Youâ€™re going on holiday and you need a hotel?</h1>
     <h2 class="font__size--xxl font__primary--bold color__secondary--cold">Look no further!</h2>
     <div class="row">
       <p class="col-xs-9 font__size--r color__text--light">Hotelinho.ro offers enormously low prices for up to 10.000 hotels across Romania and the sorrounding areas.<br>Join now and get a<span class="color__secondary--warm"> 10% discount on your reservation!</span></p>
