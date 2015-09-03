@@ -11578,7 +11578,8 @@ var HTLN = {
     //time: null,
     //
     _apiKey: 'AIzaSyBAbnb7yFZTA9df-DxSTlVvnmNPkK-kctk', // google maps api key
-    _stationsLocation: 'http://localhost:8090/hotelinhoServices/hotels',
+    _hotelsLocation: 'http://localhost:8090/hotelinhoServices/hotels',
+    _roomsLocation: 'http://localhost:8090/hotelinhoServices/hotels/rooms',
     //
     init: function() {
         //FGN.handleMessageBoxClose();
@@ -11586,17 +11587,116 @@ var HTLN = {
         //FGN.initMobileMenu();
         //FGN.handleWindowResize();
         HTLN.handleMapArrowClick();
+        HTLN.toggle.init();
+        HTLN.selectDatesEvent();
     },
 
     handleMapArrowClick: function() {
         var arrowSelector = '#scroll-to-map';
 
         $(arrowSelector).on('click', function() {
-            console.log('ana');
             $('html, body').animate({
                 scrollTop: $('.homepage-map').offset().top - 16 * 5
             }, 600);
         });
+    },
+
+    selectDatesEvent: function() {
+        $('.hotel-details__travel-dates form').on('submit', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+
+            //remove rooms
+            HTLN.removeHotelRooms();
+
+            //remove error
+            $('.hotel-details__rooms .error').hide();
+
+            $.getJSON(HTLN._roomsLocation, $this.serialize(), function(result) {
+                HTLN.handleHotelRooms(result);
+            });
+        });
+    },
+
+    removeHotelRooms: function() {
+        $('.hotel-details__rooms .hotel-details__room').remove();
+    },
+
+    handleHotelRooms: function(rooms) {
+        var htmlRooms = '';
+
+        $.each(rooms, function() {
+            //compute facilities html
+            var facilities = "";
+
+            if(this.tv) {
+                facilities += '' +
+                    '<div class="hotel__room__facility">' +
+                    '<img src="icons/tv-icon2.png" title="Flat screen TV">' +
+                    '<span>Flat screen TV</span>' +
+                    '</div>';
+            }
+
+            if(this.minibar) {
+                facilities += '' +
+                    '<div class="hotel__room__facility">' +
+                    '<img src="icons/minibar-icon.png" title="Minibar">' +
+                    '<span>Minibar</span>' +
+                    '</div>';
+            }
+
+            if(this.phone) {
+                facilities += '' +
+                    '<div class="hotel__room__facility">' +
+                    '<img src="icons/phone-icon.png" title="Telephone">' +
+                    '<span>Telephone</span>' +
+                    '</div>';
+            }
+
+            if(this.airConditioning) {
+                facilities += '' +
+                    '<div class="hotel__room__facility">' +
+                    '<img src="icons/ac-icon-small.png" title="Air conditioning">' +
+                    '<span>Air conditioning</span>' +
+                    '</div>';
+            }
+
+            if(this.balcony) {
+                facilities += '' +
+                    '<div class="hotel__room__facility">' +
+                    '<img src="icons/balcony-icon.png" title="Balcony">' +
+                    '<span>Balcony</span>' +
+                    '</div>';
+            }
+
+            // room html
+            var htmlRoom = '<div class="hotel-details__room"><div class="container"><div class="row">';
+
+            htmlRoom += '<div class="col-xs-3 hotel__room__image">';
+            htmlRoom += '<img src="'+this.photo+'">';
+            htmlRoom += '</div>';
+
+            htmlRoom += '<div class="col-xs-9 hotel__room__details">';
+            htmlRoom += '<div class="hotel__room__info">';
+            htmlRoom += '<span class="name font__primary--medium font__size--m color__text--dark">'+this.type.charAt(0).toUpperCase() + this.type.slice(1) +' #'+ this.roomNumber +'</span>';
+            htmlRoom += '<span class="separator">|</span>';
+            htmlRoom += '<span class="beds color__error font__secondary font__size--r text-bold">#beds: '+this.nrBeds+'</span>';
+            htmlRoom += '<span class="separator">|</span>';
+            htmlRoom += '<span class="price__name font__size--v font__primary--normal color__primary">Price:</span>';
+            htmlRoom += '<span class="price__value color__success font__primary--normal font__size--l"> '+this.price+' <span class="font__size--m">euro/night</span></span>';
+            htmlRoom += '<button class="btn btn__primary btn--l book-room-button">Book this room</button>';
+            htmlRoom += '</div>';
+            htmlRoom += '<div class="hotel__room__facilities">';
+            htmlRoom += facilities;
+            htmlRoom += '</div>';
+            htmlRoom += '</div>';
+
+            htmlRooms += '</div></div></div>';
+            htmlRooms += htmlRoom;
+        });
+
+
+        $('.hotel-details__rooms').append(htmlRooms);
     }
     //
     ///**
@@ -11612,47 +11712,44 @@ var HTLN = {
     //removeLoadingState: function($elem) {
     //    $elem.removeClass('loading', 2000).removeClass('white', 2000);
     //},
-    //
-    ///**
-    // * handles click event on close button of message boxes across the site
-    // */
-    //handleMessageBoxClose: function() {
-    //    $(document).on('click', '.ui.message .icon.close', function() {
-    //        var $message = $(this);
-    //        $message.parent().fadeOut(400, function() {
-    //            $message.remove();
-    //        });
-    //    });
-    //},
-    //
-    //initMobileMenu: function() {
-    //    $('.menu-mobile-toggle').on('click', function() {
-    //        $(this)
-    //            .toggleClass('active')
-    //            .next('.main-nav').slideToggle();
-    //    });
-    //},
-    //
-    //handleWindowResize: function() {
-    //    $(window).on('resize', function() {
-    //
-    //        if(FGN.time != null) {
-    //            clearTimeout(FGN.time);
-    //            FGN.time = null;
-    //        }
-    //
-    //        FGN.time = setTimeout(function() {
-    //            $('.menu-mobile-toggle')
-    //                .removeClass('active')
-    //                .next('.main-nav').removeAttr('style');
-    //        }, 200);
-    //
-    //    });
-    //}
 };
 $(function() {
     HTLN.init();
 });
+HTLN.toggle = {
+
+  selector: "data-toggle",
+  animationDuration: 300,
+  openClass: 'open',
+
+  init: function() {
+    $('['+HTLN.toggle.selector+']').on('click', function(e) {
+      e.preventDefault();
+
+      console.log('anaaaaaa');
+
+      HTLN.toggle.handleToggle($($(this).attr(HTLN.toggle.selector)));
+    })
+  },
+
+  handleToggle: function($el) {
+
+    if($el.hasClass(HTLN.toggle.openClass)) {
+
+      $el.fadeOut(HTLN.toggle.animationDuration, function() {
+          $el
+            .removeClass(HTLN.toggle.openClass)
+            .removeAttr('style');
+        });
+    } else {
+      $el.fadeIn(HTLN.toggle.animationDuration, function() {
+          $el
+            .addClass(HTLN.toggle.openClass)
+            .removeAttr('style');
+        });
+    }
+  }
+};
 HTLN.maps = {
 
     _elementId: 'map-canvas',
@@ -11667,7 +11764,7 @@ HTLN.maps = {
     _defaultLng: 25.164185,
     _markerIconPath: 'icons/hotel-marker.png',
     _nearbyPlacesMarker: 'icons/nearby-place-marker.png',
-    _stationsLocation: HTLN._stationsLocation,
+    _hotelsLocation: HTLN._hotelsLocation,
     _infoWindow: null,
     _markers: [],
     _placesMarkers: [],
@@ -11679,15 +11776,13 @@ HTLN.maps = {
      * Initializes map object
      */
     init: function() {
-        //FGN.setLoadingState($('#' + this._elementId).parent());
 
         var mapCanvas = document.getElementById(this._elementId),
             mapOptions = {
                 center: new google.maps.LatLng(this._defaultLat, this._defaultLng),
                 zoom: this._defaultZoom,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
-            },
-            self = this;
+            };
 
         this._map = new google.maps.Map(mapCanvas, mapOptions);
 
@@ -11701,10 +11796,8 @@ HTLN.maps = {
         this.initPopupClose();
 
         //google.maps.event.addListenerOnce(this._map, 'tilesloaded', function(){
-            //FGN.removeLoadingState($('#' + self._elementId).parent());
+            //HTLN.removeLoadingState($('#' + self._elementId).parent());
         //});
-
-        //this.setDetailBoxHeader();
     },
 
     initPopupClose: function() {
@@ -11736,23 +11829,9 @@ HTLN.maps = {
     initDetailsBox: function() {
         //this.initSearchBox(); //TODO
         this.myLocationEvent();
-        //this.saveStationEvent();
     },
-    //
-    ///**
-    // * handles click on 'save station' button
-    // */
-    //saveStationEvent: function() {
-    //    var self = this;
-    //
-    //    $(document).on('click', '.' + this._saveStationClass, function() {
-    //        window.location.href = 'maps/saveStation/' + self._activeStation.id;
-    //    });
-    //},
-    //
-    ///**
-    // * Initializes and adds functionality to address/places search box
-    // */
+
+
     //initSearchBox: function() {
     //    var self = this,
     //        input = document.getElementById(this._searchBoxId),
@@ -11793,7 +11872,7 @@ HTLN.maps = {
     //
     //    });
     //},
-    //
+
     /**
      * Pans the map or jumps to client location
      */
@@ -11805,9 +11884,9 @@ HTLN.maps = {
         });
     },
 
-    getStations: function() {
+    getHotels: function() {
         var self = this;
-        return $.getJSON(this._stationsLocation, function(result) {
+        return $.getJSON(this._hotelsLocation, function(result) {
             self.hotels = result;
         });
     },
@@ -11824,7 +11903,7 @@ HTLN.maps = {
             self.initAddMarkers(filteredStations);
 
         } else {
-            $.when(this.getStations()).done(function(){
+            $.when(this.getHotels()).done(function(){
 
                 var hotels = self.hotels;
 
@@ -11841,21 +11920,6 @@ HTLN.maps = {
 
         this.addMarkers(hotels, this._markerIconPath);
 
-        ////set clustered marker styles
-        //var styles = [{
-        //    url: 'resources/img/marker-cluster.png',
-        //    width: 30,
-        //    height: 46,
-        //    anchor: {0: -0}, //used to position the number label
-        //    averageCenter: true,
-        //    textColor: '#FFFFFF',
-        //    textSize: 14
-        //}];
-        //
-        //this._markerClusterer = new MarkerClusterer(this._map, this._markers, {
-        //    maxZoom: 12,
-        //    styles: styles
-        //});
     },
 
     /**
@@ -11886,11 +11950,6 @@ HTLN.maps = {
             google.maps.event.addListener(marker, 'click', fn);
         }
     },
-
-    //removeMarkers: function() {
-    //    this._markerClusterer.clearMarkers();
-    //    this._markers = [];
-    //},
 
     /**
      * Handles marker click and opens info window
@@ -11999,8 +12058,8 @@ HTLN.maps = {
     },
 
     /**
-     * Handles tooltip arrow click - populates detailsbox with station details
-     * @param hotel - station clicked / tooltip opened
+     * Handles tooltip arrow click - populates detailsbox with hotel details
+     * @param hotel - hotel clicked / tooltip opened
      * @returns {Function}
      */
     tooltipLinkEvent: function(hotel) {
@@ -12012,82 +12071,92 @@ HTLN.maps = {
         return function() {
             $('.' + self._detailsPopupSelector).show();
             $('html').css({overflowY: 'hidden'});
-        //
-        //    //add station class to detailsbox
-        //    //$box.addClass(station.comp.toLowerCase());
-        //
-        //    //change header to station type and name and remove hidden class from save button
-        //    $box.find('.header').find('.title').html(hotel.comp)
-        //        .end()
-        //        .find('.location').html(hotel.name)
-        //        .end()
-        //        .find('.save-station').removeClass('hidden');
-        //
-        //    //get save button popup text for later use
-        //    var saveButtonText = $box.find('.header .save-station').data('content');
-        //
-        //    //remove hidden class of content and add station details
-        //    var $content = $box.find('.content').removeClass('hidden');
-        //
-        //    //address
-        //    $('<div />', {
-        //        class: 'address',
-        //        html: '<i class="address-marker-icon"></i>' + hotel.address
-        //    }).appendTo($content);
-        //
-        //    $content.append('<hr>');
-        //
-        //    //phone
-        //    if(hotel.phone) {
-        //        $('<div />', {
-        //            class: 'phone',
-        //            html: '<i class="phone-icon"></i>' + hotel.phone
-        //        }).appendTo($content);
-        //
-        //        $content.append('<hr>');
-        //    }
-        //
-        //    //open hours
-        //    if(hotel.open) {
-        //        $('<div />', {
-        //            class: 'hours',
-        //            html: '<i class="clock-icon"></i>' + hotel.open
-        //        }).appendTo($content);
-        //
-        //        $content.append('<hr>');
-        //    }
-        //
-        //    //add prices title
-        //    $content.append('<p>Pret combustibil in aceasta statie:</p>'); //TODO make this text come from somewhere - not hardcoded
-        //
-        //    //add prices
-        //    var $prices = $('<div />', {
-        //        class: 'prices'
-        //    });
-        //
-        //    for(var i=0; i<hotel.details.names.length; i++) {
-        //        $('<div />', {
-        //            class: 'price',
-        //            html: '<span class="name">' + hotel.details.names[i] + '</span>' +
-        //            '<span class="value">' + hotel.details.prices[i] + '</span>'
-        //        }).appendTo($prices);
-        //    }
-        //
-        //    $prices.appendTo($content);
-        //
-        //    //add last update
-        //    $('<p />', {
-        //        class: 'last-update',
-        //        html: 'ultima actualizare: ' + //TODO not hardcoded
-        //        '<span>' + hotel.last_update + '</span>'
-        //    }).appendTo($content);
-        //
-        //    //add save button
-        //    $('<div />', {
-        //        class: 'save-station save-custom popup',
-        //        'data-content': saveButtonText,
-        //        'data-offset': 3
-        //    }).appendTo($content);
+
+            $('.hotel-details__marker img').attr('title', hotel.name);
+            $('.hotel-details__title').html(hotel.name);
+            $('.hotel-details__address').html(hotel.address);
+
+            //compute stars
+            var stars = "",
+                index = 0;
+            while(index < hotel.nrStars) {
+                stars += '<span></span>';
+                index++;
+            }
+
+            $('.hotel-details-popup .stars--large').html(stars);
+
+            $('.hotel-details__image').html(
+                '<img src="'+hotel.photo+'" alt="'+hotel.name+'">'
+            );
+
+            $('.hotel-details__description').html(hotel.description);
+
+            // compute facilities
+            var facilities = "<h3 class='font__primary--light color__primary font__size--l'>Hotel facilities</h3>";
+            if(hotel.pool) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/pool.png' title='Pool'></div>";
+                facilities += "<p>Pool</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.restaurant) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/restaurant.png' title='Restaurant'></div>";
+                facilities += "<p>Restaurant</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.playground) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/playground.png' title='Playground'></div>";
+                facilities += "<p>Playground</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.parking) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/parking.png' title='Parking'></div>";
+                facilities += "<p>Parking</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.wireless) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/wifi.png' title='Wireless'></div>";
+                facilities += "<p>Wireless</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.roomService) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/room-service.png' title='Room service'></div>";
+                facilities += "<p>Room service</p>";
+                facilities += "</div>";
+            }
+
+            if(hotel.airConditioning) {
+                facilities += "<div class='hotel-details__facility col-xs-2'>";
+                facilities += "<div class='hotel-details__facility__img'><img src='icons/ac.png' title='Air Conditioning'></div>";
+                facilities += "<p>Air Conditioning</p>";
+                facilities += "</div>";
+            }
+
+            $('.hotel-details__facilities').html(facilities);
+
+            $('.hotel-details__travel-dates form input[name="hotelId"]').val(hotel.id);
+
+            var $hotelTravelDates = $('.hotel-details__travel-dates');
+            if($hotelTravelDates.find('#startDate').val() && $hotelTravelDates.find('#endDate').val()) {
+                $.getJSON(HTLN._roomsLocation, $hotelTravelDates.find('form').serialize(), function(result) {
+                    HTLN.removeHotelRooms();
+                    HTLN.handleHotelRooms(result);
+                });
+            } else {
+                HTLN.removeHotelRooms();
+                $('.hotel-details__rooms .error').show();
+            }
         };
     },
 
@@ -12102,12 +12171,6 @@ HTLN.maps = {
             });
         };
     }
-    //
-    //setDetailBoxHeader: function() {
-    //    $box = $('#' + this._elementId).parent().find('.station-details');
-    //
-    //    this._detailsBoxHeader = $box.find('.header .title').html();
-    //}
 };
 
 $(function(){

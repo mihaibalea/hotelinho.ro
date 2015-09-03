@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,9 +53,9 @@ public class HotelsController {
 		return business.getHotelById(id);
 	}
 
-	@RequestMapping(value = "/{id}/rooms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<RoomDTO> getRoomsForHotel(@PathVariable String id) throws ResourceNotFoundException {
-		return business.getRoomsForHotel(id);
+	@RequestMapping(value = "/rooms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<RoomDTO> getRoomsForHotel(@RequestParam String hotelId, @RequestParam String startDate, @RequestParam String endDate) throws ResourceNotFoundException {
+		return business.getRoomsForHotel(hotelId);
 	}
 
 	@RequestMapping(value = "/{id}/room", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

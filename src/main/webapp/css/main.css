@@ -1,4 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("fonts/glyphicons-halflings-regular.eot");
+  /* IE9 Compat Modes */
+  src: url("fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("fonts/glyphicons-halflings-regular.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
 /* ==========================================================================
    Normalize.scss settings
    ========================================================================== */
@@ -6438,7 +6445,7 @@ button.close {
 .font__size--r {
   font-size: 1rem; }
 
-.font__size--v, .btn__l {
+.font__size--v {
   font-size: 1.25rem; }
 
 .font__size--m {
@@ -6480,6 +6487,9 @@ button.close {
 .font__secondary {
   font-family: Arial, sans-serif; }
 
+.text-bold {
+  font-weight: bold; }
+
 .color__primary {
   color: #0197bc; }
 
@@ -6495,6 +6505,21 @@ button.close {
 .color__text--light {
   color: #ffffff; }
 
+.color__error {
+  color: #de0000; }
+
+.color__success {
+  color: #00a317; }
+
+.clear--l {
+  clear: left; }
+
+.clear--r {
+  clear: right; }
+
+.clear--b {
+  clear: both; }
+
 body, html {
   font-size: 16px;
   line-height: 24px;
@@ -6505,15 +6530,22 @@ a {
   a:hover {
     text-decoration: underline;
     color: #333333; }
+  a[data-toggle] {
+    text-decoration: none; }
+    a[data-toggle]:hover {
+      text-decoration: underline; }
 
 .btn {
   cursor: pointer;
   border-radius: 0;
+  border-width: 2px;
+  font-size: 0.875rem;
+  height: 32px;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s; }
 
-.btn__default, .btn__default--light {
+.btn__default, .btn__default--light, .btn__primary {
   background: transparent;
   font-family: 'Roboto', 'Arial', sans-serif;
   font-weight: 300; }
@@ -6526,17 +6558,51 @@ a {
     color: #7fe6ff;
     box-shadow: none; }
 
-.btn__l {
+.btn__primary {
+  border-color: #0197bc;
+  color: #0197bc; }
+  .btn__primary:hover, .btn__primary:focus, .btn__primary:active {
+    border-color: #7fe6ff;
+    color: #7fe6ff;
+    box-shadow: none; }
+
+.btn--l {
   border-width: 3px;
+  font-size: 1.25rem;
   height: 48px; }
 
-.stars span {
+.stars span, .stars--large span {
   background: url("../icons/star.png");
   background-size: 20px;
   width: 20px;
   height: 20px;
   display: inline-block;
   margin-right: 5px; }
+
+.stars--large span {
+  background-size: 30px;
+  width: 30px;
+  height: 30px; }
+
+input {
+  border-radius: 0 !important; }
+  input.input--l {
+    height: 48px; }
+  input[type="date"] {
+    padding: 0 0 0 16px;
+    border: 1px solid #cccccc;
+    box-shadow: none; }
+    input[type="date"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      display: none; }
+
+form.form-inline label, form.form-inline input {
+  margin-right: 16px; }
+
+.error {
+  color: #de0000;
+  font-style: italic;
+  font-weight: bold; }
 
 .top-header {
   height: 80px;
@@ -6555,14 +6621,38 @@ a {
 .top-header__account-area {
   list-style-type: none; }
   .top-header__account-area li {
+    position: relative;
     float: right;
     margin-top: 16px; }
-    .top-header__account-area li a {
+    .top-header__account-area li > a {
       padding: 32px 0;
       margin-left: 32px;
       font-size: 0.875rem;
       line-height: 2.875rem;
       color: #333333; }
+
+.top-header__login-popup {
+  display: none;
+  background: #f0f0f0;
+  position: absolute;
+  right: 0;
+  width: 304px;
+  top: 56px;
+  padding: 16px;
+  box-shadow: 2px 0 5px -1px #333; }
+  .top-header__login-popup.open {
+    display: block; }
+  .top-header__login-popup:before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    background: #f0f0f0; }
+  .top-header__login-popup a {
+    line-height: 1rem; }
 
 .homepage-main-banner {
   background: url("../images/beach_banner.jpg") no-repeat top center;
@@ -6630,17 +6720,20 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9);
+  background: #f5f5f5;
   overflow-y: scroll;
   overflow-x: hidden;
-  z-index: 101; }
+  z-index: 101;
+  padding-bottom: 160px; }
+  .hotel-details-popup > .container {
+    margin-top: 96px; }
 
 .hotel-details-popup__close {
-  position: absolute;
+  position: fixed;
   font-size: 9.375rem;
   font-family: Arial, sans-serif;
   color: #ccc;
-  right: 25px;
+  right: 40px;
   top: 50px;
   font-weight: 100;
   transform: rotate(45deg);
@@ -6651,6 +6744,126 @@ a {
   .hotel-details-popup__close:hover {
     transform: rotate(135deg);
     color: #ffba82; }
+
+.hotel-details__title {
+  margin: 0;
+  float: left; }
+
+.stars--large {
+  margin: 16px 0 0 16px; }
+
+.hotel-details__address {
+  color: #999;
+  margin: 4px 0 0 3px;
+  clear: both; }
+
+.hotel-details__image {
+  margin-top: 32px; }
+  .hotel-details__image img {
+    width: 100%;
+    height: auto; }
+
+.hotel-details__description {
+  margin-top: 32px; }
+  .hotel-details__description p {
+    font-family: Arial, sans-serif;
+    color: #333333;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    text-align: justify; }
+    .hotel-details__description p:first-of-type {
+      font-size: 1.5rem;
+      color: #ffba82;
+      margin-bottom: 24px; }
+
+.hotel-details__facility p {
+  text-align: center;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-weight: 700;
+  color: #333333;
+  font-size: 1rem; }
+
+.hotel-details__facility__img {
+  height: 70px;
+  margin: 32px 0 16px;
+  position: relative; }
+  .hotel-details__facility__img img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+
+.hotel-details__travel-dates form {
+  margin: 32px 0 16px; }
+
+.hotel-details__rooms p.error {
+  margin: 32px 0 16px; }
+  .hotel-details__rooms p.error .glyphicon {
+    margin-right: 8px; }
+
+.hotel-details__room {
+  height: 144px;
+  padding: 32px 0;
+  box-sizing: content-box; }
+  .hotel-details__room:nth-of-type(2n+1) {
+    background: #ffffff; }
+
+.hotel__room__image img {
+  width: 100%;
+  height: auto;
+  max-height: 144px; }
+
+.hotel__room__info {
+  line-height: 80px;
+  height: 80px;
+  position: relative; }
+  .hotel__room__info:after {
+    content: "";
+    height: 1px;
+    background: #dddddd;
+    position: absolute;
+    width: calc(100% - 15px);
+    left: 0;
+    bottom: 0; }
+  .hotel__room__info .name:before {
+    content: url("../icons/room-icon.png");
+    position: relative;
+    margin-right: 16px;
+    top: 15px; }
+  .hotel__room__info .separator {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-weight: 100;
+    color: #cccccc;
+    font-size: 1.875rem;
+    margin: 0 32px; }
+  .hotel__room__info .book-room-button {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 15px; }
+
+.hotel__room__facilities {
+  display: table;
+  width: 100%;
+  position: relative;
+  height: 64px; }
+
+.hotel__room__facility {
+  display: table-cell; }
+  .hotel__room__facility img {
+    margin: auto 16px;
+    top: 0;
+    bottom: 0;
+    position: absolute; }
+  .hotel__room__facility span {
+    padding-left: 64px;
+    line-height: 64px;
+    font-size: 0.875rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold; }
 
 .gm-style-iw {
   overflow: visible !important; }
@@ -6724,7 +6937,7 @@ a {
     line-height: 1rem;
     margin-top: 8px;
     text-align: justify; }
-  .h-tooltip .stars {
+  .h-tooltip .stars, .h-tooltip .stars--large {
     float: left;
     margin-top: 8px; }
   .h-tooltip .h-tooltip-hotel-details, .h-tooltip .h-tooltip-place-details {
@@ -6751,4 +6964,5 @@ a {
 
 footer {
   height: 224px;
+  line-height: 224px;
   background: #ffffff; }
