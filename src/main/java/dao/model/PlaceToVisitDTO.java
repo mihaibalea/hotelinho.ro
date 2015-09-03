@@ -10,6 +10,7 @@ public class PlaceToVisitDTO {
 	private String lat;
 	private String lng;
 	private String photo;
+	private String detailsUrl;
 
 	public String getId() {
 		return id;
@@ -81,6 +82,14 @@ public class PlaceToVisitDTO {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public String getDetailsUrl() {
+		return detailsUrl;
+	}
+
+	public void setDetailsUrl(String detailsUrl) {
+		this.detailsUrl = detailsUrl;
 	}
 
 }

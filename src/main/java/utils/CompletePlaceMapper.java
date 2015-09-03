@@ -24,6 +24,7 @@ public class CompletePlaceMapper implements RowMapper<CompletePlaceDTO> {
 		placeToVisit.setLat(rs.getString("lat"));
 		placeToVisit.setLng(rs.getString("lng"));
 		placeToVisit.setPhoto(rs.getString("photo"));
+		placeToVisit.setDetailsUrl(rs.getString("detailsUrl"));
 		placeCloseToHotel.setId(rs.getString("idd"));
 		placeCloseToHotel.setPlaceId(rs.getString("placeId"));
 		placeCloseToHotel.setHotelId(rs.getString("hotelId"));
