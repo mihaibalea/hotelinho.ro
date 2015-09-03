@@ -109,6 +109,8 @@ public class Translator {
 		completePlaceBo.setLat(completePlaceDTO.getPlaceToVisit().getLat());
 		completePlaceBo.setLng(completePlaceDTO.getPlaceToVisit().getLng());
 		completePlaceBo.setPhoto(completePlaceDTO.getPlaceToVisit().getPhoto());
+		completePlaceBo.setDetailsUrl(completePlaceDTO.getPlaceToVisit().getDetailsUrl());
+		
 		
 		return completePlaceBo;
 		
