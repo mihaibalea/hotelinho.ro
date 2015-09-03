@@ -17,12 +17,13 @@ public class RoomMapper implements RowMapper<RoomDTO> {
 		room.setRoomNumber(rs.getInt("roomNumber"));
 		room.setType(rs.getString("type"));
 		room.setNrBeds(rs.getInt("nrBeds"));
-		room.setFridge(rs.getString("fridge").equals("YES"));
+		room.setPrice(rs.getInt("price"));
 		room.setTv(rs.getString("tv").equals("YES"));
 		room.setMinibar(rs.getString("minibar").equals("YES"));
 		room.setPhone(rs.getString("phone").equals("YES"));
 		room.setAirConditioning(rs.getString("airConditioning").equals("YES"));
 		room.setBalcony(rs.getString("balcony").equals("YES"));
+		room.setPhoto(rs.getString("photo"));
 		
 		return room;
 	}

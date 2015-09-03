@@ -6,12 +6,13 @@ public class RoomDTO {
 	private int roomNumber;
 	private String type;
 	private int nrBeds;
-	private boolean fridge;
+	private int price;
 	private boolean tv;
 	private boolean minibar;
 	private boolean phone;
 	private boolean airConditioning;
 	private boolean balcony;
+	private String photo;
 
 	public String getId() {
 		return id;
@@ -53,12 +54,14 @@ public class RoomDTO {
 		this.nrBeds = nrBeds;
 	}
 
-	public boolean isFridge() {
-		return fridge;
+	
+
+	public int getPrice() {
+		return price;
 	}
 
-	public void setFridge(boolean fridge) {
-		this.fridge = fridge;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public boolean isTv() {
@@ -99,6 +102,14 @@ public class RoomDTO {
 
 	public void setBalcony(boolean balcony) {
 		this.balcony = balcony;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }
