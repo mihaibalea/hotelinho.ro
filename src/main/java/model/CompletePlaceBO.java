@@ -10,6 +10,7 @@ public class CompletePlaceBO {
 	private String lat;
 	private String lng;
 	private String photo;
+	private String detailsUrl;
 
 	public String getLat() {
 		return lat;
@@ -83,6 +84,14 @@ public class CompletePlaceBO {
 
 	public void setSpecifications(String specifications) {
 		this.specifications = specifications;
+	}
+
+	public String getDetailsUrl() {
+		return detailsUrl;
+	}
+
+	public void setDetailsUrl(String detailsUrl) {
+		this.detailsUrl = detailsUrl;
 	}
 
 	
